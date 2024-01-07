@@ -1,0 +1,22 @@
+extends base 
+
+block content 
+  main.main
+    .login-form
+      h2.heading-secondary.ma-bt-lg 注册账户
+      form.form.form--signup
+        .form__group
+            label.form__label(for='name') 用户名
+            input#name.form__input(type='text', placeholder='white venus', required)
+        .form__group
+          label.form__label(for='email') 邮箱
+          input#email.form__input(type='email', placeholder='you@example.com', required)
+        .form__group.ma-bt-md
+          label.form__label(for='password') 密码
+          input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+        .form__group.ma-bt-lg
+          label.form__label(for='password-confirm') 确认密码
+          input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+
+        .form__group
+          button.btn.btn--green(type="submit") 注册

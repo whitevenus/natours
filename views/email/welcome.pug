@@ -1,0 +1,17 @@
+extend baseEmail 
+
+block content 
+  p Hi #{firstName},
+    p 欢迎来到 Natours, 我们非常欢迎你 🎉🙏
+    p 我们是一个大家庭，请务必上传您的用户照片，以便我们更好地了解您！
+    table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
+      tbody
+        tr
+          td(align='left')
+            table(role='presentation', border='0', cellpadding='0', cellspacing='0')
+              tbody
+                tr
+                  td
+                    a(href=`${url}`, target='_blank') 上传用户照片
+    p 如果您在预订下一次旅游时需要任何帮助，请随时与我联系！
+    p - White Venus

@@ -1,0 +1,64 @@
+extends base
+
+mixin navItem(link, text, icon, active)
+  li(class=`${active} ? 'side-nav--active' : ''`)
+    a(href=`${link}`)
+      svg
+        use(xlink:href=`/img/icons.svg#icon-${icon}`)
+      | #{text}
+
+block content
+  main.main
+    .user-view
+      nav.user-view__menu
+        ul.side-nav
+          +navItem('#', '设置', 'settings', true)
+          +navItem('/my-tours', '我的预定', 'briefcase', false)
+          +navItem('#', '我的评论', 'star', false)
+          +navItem('#', '账单', 'credit-card', false)
+        - if (user.role === 'admin')
+          .admin-nav
+            h5.admin-nav__heading 管理员
+            ul.side-nav
+              +navItem('#', '旅行管理', 'map', false)
+              +navItem('#', '用户管理', 'users', false)
+              +navItem('#', '评论管理', 'star', false)
+              +navItem('#', '预定管理', 'briefcase', false)
+
+      .user-view__content
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md 账户设定
+          //- WITHOUT API
+          //- form.form.form-user-data(action='/submit-user-data' method='POST' enctype="multipart/form-data")
+
+          //- WITH API
+          form.form.form-user-data
+            .form__group
+              label.form__label(for='name') 用户名
+              input#name.form__input(type='text', value=`${user.name}`, required, name='name')
+            .form__group.ma-bt-md
+              label.form__label(for='email') 邮箱地址
+              input#email.form__input(type='email', value=`${user.email}`, required, name='email')
+            .form__group.form__photo-upload
+              img.form__user-photo(src=`/img/users/${user.photo}`, alt='User photo')
+              input.form__upload(type='file', accept='image/*' id="photo", name="photo")
+              label(for="photo") 选择一个新的照片
+            .form__group.right
+              button.btn.btn--small.btn--green(type='submit') 保存设定
+
+        .line &nbsp;
+
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md 修改密码
+          form.form.form-user-password
+            .form__group
+              label.form__label(for='password-current') 当前密码
+              input#password-current.form__input(type='password', placeholder='••••••••', required, minlength='8')
+            .form__group
+              label.form__label(for='password') 新密码
+              input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+            .form__group.ma-bt-lg
+              label.form__label(for='password-confirm') 确认密码
+              input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+            .form__group.right
+              button.btn.btn--small.btn--green.btn--save--password 保存密码
