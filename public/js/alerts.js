@@ -2,7 +2,7 @@
 
 export const hideAlert = () => {
   const el = document.querySelector(".alert");
-  console.log(el);
+  // console.log(el);
   if (el) el.parentElement.removeChild(el);
 };
 

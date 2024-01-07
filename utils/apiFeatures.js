@@ -21,7 +21,7 @@ class APIFeatures {
 
   sort() {
     if (this.querySring.sort) {
-      console.log(this.querySring.sort);
+      // console.log(this.querySring.sort);
       const sortBy = this.querySring.sort.split(",").join(" ");
       this.query = this.query.sort(sortBy);
     } else {
